@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- use <%= %> for using any dyanmic content which is taken from a javascript -->
+    <title> <%= title%> </title>
+    <!-- link the css file in assests folder which is defined in index.js file app.use(express.static('assests')) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/home.css">
+</head>
+<body>
+    <h1><%= p %> ejs express</h1>
+    <h1 id="main-heading"><i class="fa fa-address-book"></i> My Contact List</h1>
+    <div>
+        <ul>
+            <% for(let i of contact_List){ %>
+                <li>
+                    <div>
+                        <p class="name"><%= i.name %></p>
+                       
+                    </div>
+                    <div class="mob">
+                        <p><%= i.mob %></p>
+                    </div>
+                    <div class="delete">
+                        <a href="/delete-contact/?id=<%= i._id %>">
+                            <i class="fa fa-close"></i></a>
+                    </div>
+                   
+                </li>
+           <% } %>
+        </ul>
+    </div>
+    
+    <form action="/create-contact" method="post">
+        <input type="text" name="name" placeholder="Enter Your Name" required>
+        <input type="number" name="mob" placeholder="Enter Mobile Number" required>
+        <button type="submit">Add</button>        
+    </form>
+    <!-- link the script file in assests folder which is defined in index.js file app.use(express.static('assests')) -->
+    <script src="./js/home.js"></script>
+</body>
+</html>
